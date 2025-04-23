@@ -16,7 +16,7 @@ on:
         required: false
       og_image:
         description: "OG Image"
-        default: "https://github.com/fAIrconcept/jam.spotify/blob/main/cyberVSsolar.png?raw=true"
+        default: "https://i.imgur.com/hjl33hY.png"
         required: false
 
 jobs:
