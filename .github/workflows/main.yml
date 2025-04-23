@@ -1,0 +1,7 @@
+- name: Update with environment variables
+  run: |
+    export JAM_URL="${{ github.event.inputs.jam_url }}"
+    export TITLE="${{ github.event.inputs.title }}"
+    export DESCRIPTION="${{ github.event.inputs.description }}"
+    export OG_IMAGE="${{ github.event.inputs.og_image }}"
+    envsubst < redirect.template.html > index.html
