@@ -1,7 +1,43 @@
-- name: Update with environment variables
-  run: |
-    export JAM_URL="${{ github.event.inputs.jam_url }}"
-    export TITLE="${{ github.event.inputs.title }}"
-    export DESCRIPTION="${{ github.event.inputs.description }}"
-    export OG_IMAGE="${{ github.event.inputs.og_image }}"
-    envsubst < redirect.template.html > index.html
+name: Update Spotify Jam
+
+on:
+  workflow_dispatch:
+    inputs:
+      jam_url:
+        description: "New Spotify Jam URL"
+        required: true
+      title:
+        description: "Page Title"
+        default: "Join My Spotify Jam"
+        required: false
+      description:
+        description: "Meta Description"
+        default: "Let's vibe together on Spotify!"
+        required: false
+      og_image:
+        description: "OG Image"
+        default: "https://yourdomain.com/og-image.jpg"
+        required: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Update with environment variables
+        run: |
+          export JAM_URL="${{ github.event.inputs.jam_url }}"
+          export TITLE="${{ github.event.inputs.title }}"
+          export DESCRIPTION="${{ github.event.inputs.description }}"
+          export OG_IMAGE="${{ github.event.inputs.og_image }}"
+          envsubst < redirect.template.html > index.html
+
+      - name: Commit changes
+        run: |
+          git config user.name "GitHub Action"
+          git config user.email "action@github.com"
+          git add index.html
+          git commit -m "Update Jam page"
+          git push
