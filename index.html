@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <title>{{TITLE}}</title>
+    <meta name="description" content="{{DESCRIPTION}}" />
+    <meta property="og:title" content="{{TITLE}}" />
+    <meta property="og:description" content="{{DESCRIPTION}}" />
+    <meta property="og:image" content="{{OG_IMAGE}}" />
+    <meta http-equiv="refresh" content="10; URL='{{JAM_URL}}'" />
+    <meta property="og:url" content="https://jam.spotify.schachteli.ch" />
+    <meta property="og:type" content="website" />
+  </head>
+  <body>
+    <h1>{{DESCRIPTION}}</h1>
+    <h3>🎶 Redirecting You to the Jam...</h3>
+    <p>If you're not redirected, <a href="{{JAM_URL}}">click here</a>.</p>
+    <div class="spinner"></div>
+    <style>
+      body { font-family: sans-serif; text-align: center; margin-top: 100px; }
+      .spinner {
+        border: 8px solid #f3f3f3;
+        border-top: 8px solid #1DB954;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        animation: spin 1s linear infinite;
+        margin: 20px auto;
+      }
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    </style>
+  </body>
+</html>
+
