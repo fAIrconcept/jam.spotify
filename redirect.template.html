@@ -7,12 +7,24 @@
     <meta property="og:url" content="$JAM_URL" />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="$OG_IMAGE" />
-    <meta http-equiv="refresh" content="5; URL='$JAM_URL'" />
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" type="image/webp" href="/favicon.webp" />
+    <link rel="apple-touch-icon" href="/favicon.webp" />
+    <script>
+      let redirectTimeout = setTimeout(() => {
+        window.location.href = "https://spotify.link/JW8tIYDwMSb";
+      }, 5000); // Redirect after 5 seconds
+    
+      function cancelRedirect() {
+        clearTimeout(redirectTimeout);
+        document.getElementById('cancel-msg').textContent = "✅ Redirect canceled.";
+      }
+     </script>
   </head>
   <body>
     <h1>🎶 Redirecting You to the Jam...</h1>
     <p>If you're not redirected, <a href="$JAM_URL">click here</a>.</p>
+    <button onclick="cancelRedirect()">Cancel Redirect</button>
+    <p id="cancel-msg"></p>
     <div class="spinner"></div>
     <style>
       body { font-family: sans-serif; text-align: center; margin-top: 100px; }
