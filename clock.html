@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    svg { background: #eee; }
+    .t0 { fill: #fff; }
+    .t1 { fill: #aaa; }
+    .t2 { fill: #000; }
+    circle { stroke: #000; stroke-width: 2; r: 10; }
+  </style>
+</head>
+<body>
+<svg width="200" height="120" xmlns="http://www.w3.org/2000/svg" id="clock">
+  <!-- Seconds -->
+  <circle cx="20"  cy="30" id="s0"/>
+  <circle cx="50"  cy="30" id="s1"/>
+  <circle cx="80"  cy="30" id="s2"/>
+  <circle cx="110" cy="30" id="s3"/>
+  <!-- Minutes -->
+  <circle cx="20"  cy="60" id="m0"/>
+  <circle cx="50"  cy="60" id="m1"/>
+  <circle cx="80"  cy="60" id="m2"/>
+  <circle cx="110" cy="60" id="m3"/>
+  <!-- Hours -->
+  <circle cx="20"  cy="90" id="h0"/>
+  <circle cx="50"  cy="90" id="h1"/>
+  <circle cx="80"  cy="90" id="h2"/>
+</svg>
+
+<script>
+function toBase3(n, length) {
+  let result = n.toString(3).padStart(length, '0');
+  return result.split('').map(d => parseInt(d));
+}
+
+function updateClock() {
+  const now = new Date();
+  const secs = toBase3(now.getSeconds(), 4);
+  const mins = toBase3(now.getMinutes(), 4);
+  const hrs  = toBase3(now.getHours(), 3);
+
+  secs.forEach((val, i) => document.getElementById(`s${i}`).setAttribute('class', `t${val}`));
+  mins.forEach((val, i) => document.getElementById(`m${i}`).setAttribute('class', `t${val}`));
+  hrs.forEach((val, i)  => document.getElementById(`h${i}`).setAttribute('class', `t${val}`));
+}
+
+setInterval(updateClock, 1000);
+updateClock(); // Initial call
+</script>
+</body>
+</html>
